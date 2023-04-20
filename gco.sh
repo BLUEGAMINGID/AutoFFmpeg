@@ -1,19 +1,20 @@
 clear
 sleep 2
 echo "\033[31;1m\nGetting Device Info..... " 
-sleep 3
-if [[ "$(readlink -f "$0")" == AutoFFmpeg/* ]]; then
-    echo "File Must Be Move to /sdcard "
-    sleep 1
-    termux-setup-storage
-    sleep 5
+sleep 3 
+
+if [ $(pwd) = "/sdcard/AutoFFmpeg" ]; then
+echo ""
+else
+echo "\033[1;32m\nFile Must Be Move to /sdcard "
+    sleep 2
     mkdir /sdcard/AutoFFmpeg
-    cp AutoFFmpeg/gco.sh /sdcard/AutoFFmpeg
+    cp gco.sh /sdcard/AutoFFmpeg
     cd /sdcard/AutoFFmpeg
-    sh gco.sh
     echo "\033[31;1m\nDo Not Change File Name !!"
-    sleep 3
-    fi
+    sleep 5
+    sh gco.sh
+  fi
 if [ -z "$(command -v ffmpeg)" ] || [ -z "$(command -v neofetch)" ] || [ -z "$(command -v lolcat)" ] 
 then
 echo "\nDevice Need To Setup!"
@@ -341,8 +342,9 @@ fi
 
 if [ $ezz = 08 ] || [ $ezz = 8 ]
 then
+exit 1
 clear
 echo "\033[39;1m"
 toilet -f mono12 -F metal "KELUAR"
 echo "semoga hari mu menyenangkan"
-fi 
+fi
