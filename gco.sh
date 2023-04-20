@@ -2,18 +2,26 @@ clear
 sleep 2
 echo "\033[31;1m\nGetting Device Info..... " 
 sleep 3 
+if [ "$0" = "gco.sh" ]; then
+echo ""
+else
+echo ""
+  echo "File harus dieksekusi dengan nama gco.sh"
+  exit 1
+fi
 
 if [ $(pwd) = "/sdcard/AutoFFmpeg" ]; then
 echo ""
 else
-echo "\033[1;32m\nFile Must Be Move to /sdcard "
+echo "\033[1;32m\nFile Must Be Move to /sdcard/AutoFFmpeg "
     sleep 2
     mkdir /sdcard/AutoFFmpeg
     cp gco.sh /sdcard/AutoFFmpeg
-    cd /sdcard/AutoFFmpeg
     echo "\033[31;1m\nDo Not Change File Name !!"
-    sleep 5
-    sh gco.sh
+    sleep 3
+    echo "\033[1;32m\nRun Manually to /sdcard/AutoFFmpeg"
+    sleep 1
+    exit 1
   fi
 if [ -z "$(command -v ffmpeg)" ] || [ -z "$(command -v neofetch)" ] || [ -z "$(command -v lolcat)" ] 
 then
@@ -27,6 +35,8 @@ apt install lolcat
 apt install neofetch
 clear
 fi
+
+
 clear
 A2='.ass'
 neofetch
@@ -342,9 +352,9 @@ fi
 
 if [ $ezz = 08 ] || [ $ezz = 8 ]
 then
-exit 1
 clear
 echo "\033[39;1m"
 toilet -f mono12 -F metal "KELUAR"
 echo "semoga hari mu menyenangkan"
+exit 1
 fi
