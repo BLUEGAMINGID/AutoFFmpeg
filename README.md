@@ -1,5 +1,6 @@
 # AutoFFmpeg
-https://t.me/DANZMOVIES
+[![Logo Telegram](https://github.com/BLUEGAMINGID/AutoFFmpeg/blob/main/telegram.svg)](https://t.me/DANZMOVIES)
+
 
 ---
 
