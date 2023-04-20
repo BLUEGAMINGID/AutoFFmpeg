@@ -22,5 +22,6 @@ start script : ```sh gco.sh```
 
 ---
 
-# Recommend Run In Ubuntu
+# Notes
+ - Recommended for Ubuntu in termux
 
