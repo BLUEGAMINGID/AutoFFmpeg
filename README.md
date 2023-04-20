@@ -19,3 +19,8 @@ Clone git : ```git clone https://github.com/BLUEGAMINGID/AutoFFmpeg```
 cd AutoFFmpeg : ```cd AutoFFmpeg```
 
 start script : ```sh gco.sh```
+
+---
+
+# Recommend Run In Ubuntu
+
