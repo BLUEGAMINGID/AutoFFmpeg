@@ -3,24 +3,27 @@ sleep 2
 echo "\033[31;1m\nGetting Device Info..... " 
 sleep 3 
 if [ "$0" = "gco.sh" ]; then
-echo ""
+echo "\033[1;32m\n [✓] File Named gco.sh"
+sleep 3
 else
 echo ""
-  echo "File harus dieksekusi dengan nama gco.sh"
+  echo "[X] File Must be Named 'gco.sh'"
+  sleep 3
   exit 1
 fi
 
-if [ $(pwd) = "/sdcard/AutoFFmpeg" ]; then
-echo ""
+if [ $(pwd) = "/sdcard/AutoFFmpeg" ] || [ $(pwd) = "/sdcard/1DM" ]; then
+echo "\033[1;32m\n [✓] File Located in AutoFFmpeg"
+sleep 5
 else
-echo "\033[1;32m\nFile Must Be Move to /sdcard/AutoFFmpeg "
+echo "\033[31;1m\n [X] File Must Be Executed in /sdcard/AutoFFmpeg "
     sleep 2
-    mkdir /sdcard/AutoFFmpeg
+    mkdir /sdcard/AutoFFmpeg 2>/dev/null
     cp gco.sh /sdcard/AutoFFmpeg
-    echo "\033[31;1m\nDo Not Change File Name !!"
-    sleep 3
-    echo "\033[1;32m\nRun Manually to /sdcard/AutoFFmpeg"
-    sleep 1
+    echo "\033[1;32m\n -------------------------------------------------------"
+    echo "  Script Automatically Copied File To Folder AutoFFmpeg"
+    echo "\033[1;32m -------------------------------------------------------\n\033[0m"
+    sleep 4
     exit 1
   fi
 if [ -z "$(command -v ffmpeg)" ] || [ -z "$(command -v neofetch)" ] || [ -z "$(command -v lolcat)" ] 
