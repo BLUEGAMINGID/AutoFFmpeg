@@ -2,6 +2,30 @@ clear
 sleep 2
 echo "\033[31;1m\nGetting Device Info..... " 
 sleep 3 
+
+model=$(getprop ro.build.version.release 2>/dev/null)
+if [ $(uname -s) = "Linux" ];  then
+ echo ""
+ if grep -q "Ubuntu" "/etc/lsb-release" 2>/dev/null; then
+            echo "\033[1;32m [✓] Ubuntu Detected"
+            sleep 5
+        else
+            if [ $model = "7" ] || [ $model = "8" ] || [ $model = "9" ] || [ $model = "10" ] || [ $model = "11" ] || [ $model = "12" ] || [ $model = "13" ] || [ $model = "14" ]; then
+    echo "\033[1;32m [✓] Android Device Detected"
+    sleep 5
+    uvc='1'
+ else
+echo "\033[1;32m [√] Linux Detected"
+sleep 5
+fi
+ fi
+else
+sleep 3
+echo "\n [X] Only Android/Ubuntu Can Executed This script\n"
+sleep 3
+exit 1
+fi
+
 if [ "$0" = "gco.sh" ]; then
 echo "\033[1;32m\n [✓] File Named gco.sh"
 sleep 3
@@ -12,20 +36,23 @@ echo ""
   exit 1
 fi
 
+if [ $uvc = '1' ]; then
 if [ $(pwd) = "/sdcard/AutoFFmpeg" ] || [ $(pwd) = "/sdcard/1DM" ]; then
-echo "\033[1;32m\n [✓] File Located in AutoFFmpeg"
-sleep 5
-else
-echo "\033[31;1m\n [X] File Must Be Executed in /sdcard/AutoFFmpeg "
+    echo "\033[1;32m\n [✓] File Located in AutoFFmpeg"
+    sleep 3
+    else
+    echo "\033[31;1m\n [X] File Must Be Executed in /sdcard/AutoFFmpeg "
     sleep 2
     mkdir /sdcard/AutoFFmpeg 2>/dev/null
     cp gco.sh /sdcard/AutoFFmpeg
     echo "\033[1;32m\n -------------------------------------------------------"
     echo "  Script Automatically Copied File To Folder AutoFFmpeg"
     echo "\033[1;32m -------------------------------------------------------\n\033[0m"
-    sleep 4
+    sleep 5
     exit 1
   fi
+fi
+
 if [ -z "$(command -v ffmpeg)" ] || [ -z "$(command -v neofetch)" ] || [ -z "$(command -v lolcat)" ] 
 then
 echo "\nDevice Need To Setup!"
@@ -74,6 +101,7 @@ ffmpeg -i "${A1}"  -c:v libx265 -vtag hvc1 -color_range 1 -pix_fmt yuv420p10le  
 main_d() { 
 ffmpeg -i "${A1}"  -c:v libx265 -vtag hvc1 -color_range 1 -pix_fmt yuv420p10le  -profile:v main10 -b:v 1M -minrate 500k -maxrate 1.5M -color_primaries bt709 -color_trc bt709 -colorspace bt709 -x265-params level=4:high-tier=1:no-info=1 -filter_complex "scale=out_color_matrix=bt709,scale=${A3}:-1,ass='${A2}'" -c:a aac -preset veryfast "${A4} [EXPORTED].mkv"
 }
+
 if [ $ezz = 1 ] || [ $ezz = 01 ]
 then
 clear
