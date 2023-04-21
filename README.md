@@ -18,6 +18,8 @@ Clone git : ```git clone https://github.com/BLUEGAMINGID/AutoFFmpeg```
 
 cd AutoFFmpeg : ```cd AutoFFmpeg```
 
+Allow Termux to use sdcard : ```termux-setup-storage```
+
 start script : ```sh gco.sh```
 
 ---
